@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Respect Devs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #0b0b0b;
+        --paper: #f7f4ef;
+        --accent: #ff5b2e;
+        --accent-2: #148f7b;
+        --muted: #5d5d5d;
+        --rule: #dcd7cf;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        color: var(--ink);
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px)
+            0 0 / 120px 120px,
+          linear-gradient(180deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px) 0 0 /
+            120px 120px,
+          var(--paper);
+        min-height: 100vh;
+        padding: 56px 20px 80px;
+      }
+
+      main {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      header {
+        padding-bottom: 28px;
+        border-bottom: 2px solid var(--rule);
+      }
+
+      h1 {
+        font-size: clamp(2.8rem, 5vw + 1rem, 5rem);
+        line-height: 0.95;
+        letter-spacing: -0.03em;
+        text-transform: uppercase;
+      }
+
+      .subtitle {
+        margin-top: 16px;
+        font-size: clamp(1.05rem, 1.5vw + 0.7rem, 1.6rem);
+        color: var(--muted);
+        max-width: 640px;
+      }
+
+      .meta {
+        margin-top: 18px;
+        font-family: "DM Mono", monospace;
+        font-size: 0.95rem;
+        color: var(--muted);
+      }
+
+      .section {
+        padding: 28px 0 24px;
+        border-bottom: 2px solid var(--rule);
+      }
+
+      h2 {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        margin-bottom: 14px;
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        background: rgba(255, 91, 46, 0.12);
+        color: var(--accent);
+      }
+
+      .tag.good {
+        background: rgba(20, 143, 123, 0.12);
+        color: var(--accent-2);
+      }
+
+      .list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .pill {
+        font-family: "DM Mono", monospace;
+        font-size: 0.95rem;
+        padding: 12px 16px;
+        background: #ffffff;
+        border: 1px solid var(--rule);
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .footer {
+        margin-top: 24px;
+        font-size: 1.1rem;
+        color: var(--muted);
+      }
+
+      .cta {
+        margin-top: 18px;
+        font-family: "DM Mono", monospace;
+        font-size: 0.95rem;
+        padding: 12px 16px;
+        border: 2px solid var(--ink);
+        display: inline-block;
+      }
+
+      @media (max-width: 720px) {
+        .list {
+          flex-direction: column;
+        }
+
+        .pill {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Respect Devs</h1>
+        <p class="subtitle">
+          Dont ask developers for free code. Respect their time, skills, and
+          boundaries.
+        </p>
+        <p class="meta">Clear asks. Fair budgets. Better outcomes.</p>
+      </header>
+
+      <section class="section">
+        <h2><span class="tag">Wrong</span></h2>
+        <div class="list">
+          <div class="pill">Hey bro can you code me a cheat for free?</div>
+          <div class="pill">Can you just make my whole website?</div>
+          <div class="pill">I have an idea, you code it, we split profits.</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2><span class="tag good">Better</span></h2>
+        <div class="list">
+          <div class="pill">Hi, I would like to hire you for a small project.</div>
+          <div class="pill">
+            Could you point me to resources where I can learn this myself?
+          </div>
+          <div class="pill">I have a budget and would love your help.</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2><span class="tag good">Also</span></h2>
+        <div class="list">
+          <div class="pill">Share goals, budget range, and deadlines up front.</div>
+          <div class="pill">Agree on scope before asking for estimates.</div>
+          <div class="pill">Respect focus time and communication windows.</div>
+        </div>
+      </section>
+
+      <p class="footer">Developers are people too. Respect their work.</p>
+      <span class="cta">Hire fairly. Collaborate honestly.</span>
+    </main>
+  </body>
+</html>
