@@ -1,113 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trevori Site</title>
-<style>
-  /* Reset */
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Respect Devs</title>
+  <style>
+    :root {
+      --bg: #121212;
+      --fg: #e0e0e0;
+      --muted: #b9b9b9;
+      --card: #1e1e1e;
+      --accent: #ff4c4c;
+      --accent-good: #4caf50;
+    }
 
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #121212; /* dark mode default */
-    color: #e0e0e0;
-    display: flex;
-    justify-content: center;
-    padding: 50px 20px;
-    transition: background 0.3s, color 0.3s;
-  }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  .container {
-    max-width: 650px;
-    width: 100%;
-    text-align: center;
-    position: relative;
-  }
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 56px 20px 80px;
+      transition: background 0.4s ease, color 0.4s ease;
+      position: relative;
+      overflow-x: hidden;
+    }
 
-  h1 { font-size: 3rem; margin-bottom: 0.5rem; color: #fff; }
-  .subtitle { font-size: 1.3rem; margin-bottom: 2.5rem; color: #bbb; }
+    canvas#particles {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.35;
+    }
 
-  section { margin-bottom: 2.5rem; }
-  h2 { font-size: 1.6rem; margin-bottom: 1rem; text-align: left; }
+    .container {
+      max-width: 700px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.8s ease both;
+    }
 
-  ul { list-style: none; padding-left: 0; }
+    h1 {
+      font-size: clamp(2.4rem, 4vw + 1rem, 3.6rem);
+      margin-bottom: 0.5rem;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
 
-  li {
-    background: #1e1e1e;
-    padding: 15px 20px;
-    margin-bottom: 12px;
-    border-left: 6px solid #ff4c4c;
-    border-radius: 8px;
-    font-family: monospace;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-    transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
-    cursor: default;
-  }
+    .subtitle {
+      font-size: clamp(1.05rem, 1.4vw + 0.6rem, 1.4rem);
+      margin-bottom: 2.5rem;
+      color: var(--muted);
+    }
 
-  li:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.7);
-  }
+    section { margin-bottom: 2.5rem; text-align: left; }
 
-  .better li { border-left-color: #4caf50; }
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-  footer {
-    margin-top: 3rem;
-    font-style: italic;
-    color: #aaa;
-    text-align: center;
-  }
+    .tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255, 76, 76, 0.15);
+      color: var(--accent);
+    }
 
-  .toggle-btn {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #444;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s, color 0.3s;
-  }
-  .toggle-btn:hover { background: #555; }
+    .tag.good {
+      background: rgba(76, 175, 80, 0.15);
+      color: var(--accent-good);
+    }
 
-  body.light-mode {
-    background: #fefefe;
-    color: #111;
-  }
+    ul { list-style: none; padding-left: 0; }
 
-  body.light-mode h1 { color: #222; }
-  body.light-mode .subtitle { color: #555; }
-  body.light-mode li { background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-  body.light-mode li:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-  body.light-mode footer { color: #666; }
-</style>
+    li {
+      background: var(--card);
+      padding: 15px 20px;
+      margin-bottom: 12px;
+      border-left: 6px solid var(--accent);
+      border-radius: 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+      transition: transform 0.25s ease, box-shadow 0.25s ease,
+        background 0.3s ease;
+      animation: floatIn 0.7s ease both;
+    }
+
+    li:nth-child(2) { animation-delay: 0.08s; }
+    li:nth-child(3) { animation-delay: 0.16s; }
+
+    li:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.35);
+    }
+
+    .better li { border-left-color: var(--accent-good); }
+
+    footer {
+      margin-top: 3rem;
+      font-style: italic;
+      color: #aaa;
+      text-align: center;
+    }
+
+    .toggle-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #2b2b2b;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 0.2s ease, box-shadow 0.2s ease,
+        background 0.3s ease, color 0.3s ease;
+      z-index: 2;
+    }
+
+    .toggle-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    body.light-mode {
+      --bg: #fefefe;
+      --fg: #111;
+      --muted: #555;
+      --card: #ffffff;
+    }
+
+    body.light-mode h1 { color: #222; }
+    body.light-mode footer { color: #666; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
 </head>
 <body>
-  <button class="toggle-btn" onclick="toggleMode()">☀️ Light Mode</button>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <button class="toggle-btn" onclick="toggleMode()">Light Mode</button>
 
   <main class="container">
-    <h1>Trevori Site</h1>
-    <p class="subtitle">Don’t expect free work from developers. Value their time and expertise.</p>
+    <h1>Respect Devs</h1>
+    <p class="subtitle">
+      Dont expect free work from developers. Value their time and expertise.
+    </p>
 
     <section class="wrong">
-      <h2>❌ Avoid Saying:</h2>
+      <h2><span class="tag">Avoid</span> Dont say</h2>
       <ul>
-        <li>`Can you build my app for free?`</li>
-        <li>`I just need a tiny favor, can you code this quickly?`</li>
-        <li>`I have an idea, you do the work, and we’ll figure out profits later.`</li>
+        <li>Can you build my app for free?</li>
+        <li>I just need a tiny favor, can you code this quickly?</li>
+        <li>I have an idea, you do the work, and well figure out profits later.</li>
       </ul>
     </section>
 
     <section class="better">
-      <h2>✅ Better Approach:</h2>
+      <h2><span class="tag good">Better</span> Try this</h2>
       <ul>
-        <li>`Hi, I’m looking for professional help and I’m happy to pay for it.`</li>
-        <li>`Could you suggest learning resources so I can try it myself?`</li>
-        <li>`I have a small project and would love your guidance.`</li>
+        <li>Hi, Im looking for professional help and Im happy to pay for it.</li>
+        <li>Could you suggest learning resources so I can try it myself?</li>
+        <li>I have a small project and would love your guidance.</li>
       </ul>
     </section>
 
@@ -118,10 +200,63 @@
 
   <script>
     function toggleMode() {
-      document.body.classList.toggle('light-mode');
-      const btn = document.querySelector('.toggle-btn');
-      btn.textContent = document.body.classList.contains('light-mode') ? '🌙 Dark Mode' : '☀️ Light Mode';
+      document.body.classList.toggle("light-mode");
+      const btn = document.querySelector(".toggle-btn");
+      const isLight = document.body.classList.contains("light-mode");
+      btn.textContent = isLight ? "Dark Mode" : "Light Mode";
+      particleColor = isLight ? "rgba(0,0,0,0.35)" : "rgba(255,255,255,0.35)";
     }
+
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+    let particles = [];
+    let particleColor = "rgba(255,255,255,0.35)";
+
+    function resize() {
+      canvas.width = window.innerWidth * window.devicePixelRatio;
+      canvas.height = window.innerHeight * window.devicePixelRatio;
+      canvas.style.width = window.innerWidth + "px";
+      canvas.style.height = window.innerHeight + "px";
+      ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
+    }
+
+    function createParticles(count) {
+      particles = Array.from({ length: count }).map(() => ({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        r: Math.random() * 2 + 0.6,
+        a: Math.random() * 0.6 + 0.2,
+      }));
+    }
+
+    function step() {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      for (const p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = window.innerWidth;
+        if (p.x > window.innerWidth) p.x = 0;
+        if (p.y < 0) p.y = window.innerHeight;
+        if (p.y > window.innerHeight) p.y = 0;
+
+        ctx.beginPath();
+        ctx.fillStyle = particleColor.replace("0.35", String(p.a));
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      requestAnimationFrame(step);
+    }
+
+    window.addEventListener("resize", () => {
+      resize();
+      createParticles(Math.floor(window.innerWidth / 10));
+    });
+
+    resize();
+    createParticles(Math.floor(window.innerWidth / 10));
+    step();
   </script>
 </body>
 </html>
